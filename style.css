@@ -1,0 +1,180 @@
+/* Estilo base */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0d1b2a, #1b263b);
+  color: white;
+  display: flex;
+}
+
+/* Menú lateral */
+#sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: transform 0.3s ease;
+}
+
+#sidebar h2 {
+  color: #ffffff;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+#sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+#sidebar li {
+  margin: 1rem 0;
+}
+
+#sidebar a {
+  color: #61dafb;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* Contenido principal */
+main {
+  margin-left: 240px;
+  padding: 2rem;
+  flex: 1;
+}
+
+/* Encabezado */
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Vista previa y formulario */
+form input[type="file"],
+form textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: white;
+  padding: 0.6rem;
+  border-radius: 6px;
+}
+
+form textarea::placeholder {
+  color: #bbb;
+}
+
+button {
+  background-color: #61dafb;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  color: #000;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #4fc1e9;
+}
+
+.preview {
+  width: 100%;
+  height: 200px;
+  background-color: rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.preview img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.hidden {
+  display: none;
+}
+.gallery {
+  margin-top: 2rem;
+  padding: 2rem;
+  color: white;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.book-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.book-card img {
+  max-width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.book-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  background: #61dafb;
+  color: #000;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.book-card a:hover {
+  background: #4fc1e9;
+}
+.delete-btn {
+  background-color: #ff4d4d;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.delete-btn:hover {
+  background-color: #e60000;
+}
