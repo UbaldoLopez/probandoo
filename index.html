@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Biblioteca Interactiva</title>
+  <style>
+    /* ---- ESTILOS GLOBALES Y GALERÍA ---- */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b);
+      color: white;
+      display: flex;
+    }
+
+    #sidebar {
+      width: 220px;
+      min-height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+      position: fixed;
+      left: 0;
+      top: 0;
+      transition: transform 0.3s ease;
+    }
+
+    #sidebar h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    #sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #sidebar li {
+      margin: 1rem 0;
+    }
+
+    #sidebar a {
+      color: #61dafb;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #sidebar a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      margin-left: 240px;
+      padding: 2rem;
+      flex: 1;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 2rem;
+    }
+
+    .hidden { display: none; }
+
+    .gallery {
+      margin-top: 2rem;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .book-card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .book-card img {
+      max-width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    .book-card a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      background: #61dafb;
+      color: #000;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .book-card a:hover {
+      background: #4fc1e9;
+    }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <h2>📖 Menú</h2>
+    <ul>
+      <li><a href="#" id="btnVerGaleria">Ver Libros</a></li>
+      <li><a href="#" id="btnActualizar">Actualizar Galería</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <header>
+      <h1>Proyecto de aprendizeje</h1>
+    </header>  
+      <h2>Biblioteca</h2>
+      <div class="book-grid" id="bookGrid">Cargando libros...</div>
+    </section>
+  </main>
+
+  <script>
+    function loadBooks() {
+      fetch('listar_libros.php')
+        .then(res => res.json())
+        .then(libros => {
+          const grid = document.getElementById('bookGrid');
+          if (libros.length === 0) {
+            grid.innerHTML = "<p>No hay libros disponibles.</p>";
+            return;
+          }
+
+          grid.innerHTML = libros.map(book => `
+            <div class="book-card">
+              <img src="${book.cover}" alt="Carátula de ${book.nombre}">
+              <p>${book.nombre}</p>
+              <a href="${book.pdf}" target="_blank">Ver PDF</a>
+            </div>
+          `).join('');
+        })
+        .catch(error => {
+          document.getElementById('bookGrid').innerHTML = "<p>Error al cargar los libros.</p>";
+          console.error(error);
+        });
+    }
+
+    document.getElementById('btnActualizar').addEventListener('click', loadBooks);
+    window.onload = loadBooks;
+  </script>
+</body>
+</html>
